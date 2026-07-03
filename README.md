@@ -8,9 +8,15 @@ This library enables the Low-Power (LP) core to completely offload monochrome OL
 
 ## 📷 Media Demo
 
-| Rendering Performance (150 active objects) | Demonstration text\gfx (ESP32-C5 on Photo) |
-| :---: | :---: |
-| ![Demo Simulation](assets/demo.gif) | <img src="assets/setup0.jpg" width="100%"> <br><br> <img src="assets/setup1.jpg" width="100%"> |
+<p align="center">
+  <img src="assets/demo.gif" width="28%" alt="Rendering Performance" \>
+  <img src="assets/setup0.jpg" width="34%" alt="Demonstration gfx" \>
+  <img src="assets/setup1.jpg" width="34%" alt="Demonstration text" \>
+</p>
+
+<p align="center">
+  <em>Left: Rendering performance test (150 active bouncing objects) | Center & Right: GFX and text demo on ESP32-C5 LP 20MHz</em>
+</p>
 
 ---
 
