@@ -1,4 +1,4 @@
-//LP RAM Usage: 6216 bytes (6-8kbytes) 8.350байт в примере с 150 обьектами
+//LP RAM Usage by default example: 6216 bytes (6-8kbytes)
 #include "ssd1312_lp.h"
 #include "ulp_lp_core_i2c.h"
 #include "ulp_lp_core_utils.h"
@@ -299,9 +299,9 @@ void oled_lp_init(void) {
     oled_send_command(0xC8); 
     oled_send_command(0xDA); oled_send_command(0x12); 
     oled_send_command(0xD3); oled_send_command(0x00); 
-    oled_send_command(0x81); oled_send_command(0xFF); 
+    oled_send_command(0x81); oled_send_command(0x3F); 
     oled_send_command(0xD9); oled_send_command(0xF1); 
-    oled_send_command(0xDB); oled_send_command(0x40); 
+    oled_send_command(0xDB); oled_send_command(0x20); 
     oled_send_command(0x2E); oled_send_command(0xA4); 
     oled_send_command(0xA6); oled_send_command(0xAC); 
     ulp_lp_core_delay_us(50000); oled_send_command(0xAF); 
