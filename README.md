@@ -47,9 +47,11 @@ This library enables the Low-Power (LP) core to completely offload monochrome OL
 ## 📂 Repository Structure
 
 ```text
-lp_core_ssd1312/
+SSD1312_OLED_RISC-V_LP-Core/
+├── LICENSE                  # License MIT
 ├── CMakeLists.txt           # Top-level project CMake
 ├── README.md                # Documentation
+├── assets/                  # Media files (Images & GIF)
 ├── main/
 │   ├── CMakeLists.txt       # Component build script with ULP integration
 │   ├── lp_core_ssd1312.c    # Main HP Core initialization application
