@@ -6,6 +6,14 @@ This library enables the Low-Power (LP) core to completely offload monochrome OL
 
 ---
 
+## 📷 Media Demo
+
+| Rendering Performance (150 active objects) | Demonstration text\gfx (ESP32-C5 on Photo) |
+| :---: | :---: |
+| ![Demo Simulation](assets/demo.gif) | <img src="assets/setup0.jpg" width="100%"> <br><br> <img src="assets/setup1.jpg" width="100%"> |
+
+---
+
 ## ⚡ Key Specifications
 
 * **RAM Footprint:** The library standalone footprint is only **2.5 KB to 4 KB** of LP SRAM (including the framebuffer). With full system drivers, ULP bootloader components, and stack allocation, real runtime consumption scales to **~6 KB to 8 KB** out of the 16 KB total available. Completely static allocation.
@@ -95,35 +103,33 @@ Include the header file inside your LP Core source code (`ulp/main.c`):
 
 ## 📋 API Reference
 
-###// --- Initialization and System Time ---
-*void oled_lp_init(void);             // Initialize display, calibrate timer, start at 24 FPS by default
-*void oled_lp_deinit(void);           // Deinitialize: turn off matrix, clear buffer, disable charge pump
-*void oled_lp_time_init(void);        // Hardware measurement of LP Core frequency (ticks per 1 µs)
-*uint64_t oled_lp_get_time_us(void);  // Time in µs with overflow protection and auto-recalibration
-*void oled_lp_set_fps(uint8_t fps);   // Set target frame rate (1..30 FPS)
+### System & Time Management
+* `void oled_lp_init(void);` — Initialize display, calibrate timer, start at 24 FPS by default.
+* `void oled_lp_deinit(void);` — Deinitialize: turn off matrix, clear buffer, disable charge pump.
+* `void oled_lp_time_init(void);` — Hardware measurement of LP Core frequency (ticks per 1 µs).
+* `uint64_t oled_lp_get_time_us(void);` — Time in µs with overflow protection and auto-recalibration.
+* `void oled_lp_set_fps(uint8_t fps);` — Set target frame rate (1..30 FPS).
 
-###// --- Power Management and Matrix Parameters ---
-*void oled_lp_power_on(void);         // Quick wake from sleep (turn on matrix)
-*void oled_lp_power_off(void);        // Quick sleep mode (turn off matrix for power saving)
-*void oled_lp_set_contrast(uint8_t contrast); // Matrix brightness (0x00 .. 0xFF)
-*void oled_lp_set_inversion(bool invert);     // Screen color inversion (true = inverted)
-*void oled_lp_set_rotation_180(bool rotate);  // Rotate display 180 degrees
-*void oled_lp_set_pump(oled_pump_volt_t v);   // Set charge pump voltage (OLED_PUMP_7_5V .. OLED_PUMP_10_0V)
+### Power Management & Matrix Parameters
+* `void oled_lp_power_on(void);` — Quick wake from sleep (turn on matrix).
+* `void oled_lp_power_off(void);` — Quick sleep mode (turn off matrix for power saving).
+* `void oled_lp_set_contrast(uint8_t contrast);` — Matrix brightness (0x00 .. 0xFF).
+* `void oled_lp_set_inversion(bool invert);` — Screen color inversion (true = inverted).
+* `void oled_lp_set_rotation_180(bool rotate);` — Rotate display 180 degrees.
+* `void oled_lp_set_pump(oled_pump_volt_t v);` — Set charge pump voltage (OLED_PUMP_7_5V .. OLED_PUMP_10_0V).
 
-###// --- Frame Buffer and Synchronization ---
-*void oled_lp_clear_buffer(void);     // Clear local RAM buffer (1024 bytes) to zero
-*bool oled_lp_is_dirty(void);         // Check if the buffer has changed since last transmission
-*void oled_lp_refresh_once(void);     // Force transmit buffer to I2C bus regardless of FPS
-*bool oled_lp_refresh_sync(void);     // Send frame based on FPS schedule (if buffer is "dirty"). Returns true on send
+### Frame Buffer & Synchronization
+* `void oled_lp_clear_buffer(void);` — Clear local RAM buffer (1024 bytes) to zero.
+* `bool oled_lp_is_dirty(void);` — Check if the buffer has changed since last transmission.
+* `void oled_lp_refresh_once(void);` — Force transmit buffer to I2C bus regardless of FPS.
+* `bool oled_lp_refresh_sync(void);` — Send frame based on FPS schedule (if buffer is "dirty"). Returns true on send.
 
-###// --- Graphics and Text (Drawing to buffer) ---
-*void oled_lp_draw_pixel(uint8_t x, uint8_t y, bool set); // Pixel (set: true = on, false = off)
-*void oled_lp_draw_frame(void);       // Draw 1-pixel outline border around the screen
-*void oled_lp_draw_line(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint8_t thickness); // Line (thickness 1..4)
-*void oled_lp_draw_rect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t r, uint8_t t, bool solid, bool chess); 
-*// ^ Rectangle (w-width, h-height, r-corner radius, t-border thickness, solid-fill, chess-checkerboard fill)
-*void oled_lp_draw_string(uint8_t x, uint8_t y, const char* str, uint8_t scale, bool flip_180); 
-*// ^ Text (5x7 ASCII font). scale-multiplier (1..4x), flip_180-mirror string horizontally/vertically
+### Graphics & Typography Rendering
+* `void oled_lp_draw_pixel(uint8_t x, uint8_t y, bool set);` — Pixel (set: true = on, false = off).
+* `void oled_lp_draw_frame(void);` — Draw 1-pixel outline border around the screen.
+* `void oled_lp_draw_line(int16_t x0, int16_t y0, int16_t x1, int16_t y1, uint8_t thickness);` — Line (thickness 1..4).
+* `void oled_lp_draw_rect(uint8_t x, uint8_t y, uint8_t w, uint8_t h, uint8_t r, uint8_t t, bool solid, bool chess);` — Rectangle (w-width, h-height, r-corner radius, t-border thickness, solid-fill, chess-checkerboard fill).
+* `void oled_lp_draw_string(uint8_t x, uint8_t y, const char* str, uint8_t scale, bool flip_180);` — Text (5x7 ASCII font). scale-multiplier (1..4x), flip_180-mirror string horizontally/vertically.
 
 ---
 
