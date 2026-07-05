@@ -4,7 +4,7 @@ A lightweight, hardware-optimized graphics and text library written from scratch
 
 This library enables the Low-Power (LP) core to completely offload monochrome OLED display rendering via the hardware `LP_I2C` peripheral. The High-Performance (HP) main core can remain in Deep Sleep or execute independent high-load tasks (such as Wi-Fi 6 or BLE communication) without interrupting the display output.
 
-*See also: [LP SSD1306 0.96" (128x64) Driver)](https://github.com/SODAVK/SSD1306_OLED_RISC-V_LP-Core) | [LP SSD1306 0.91" (128x32) Driver](https://github.com)*
+*See also: [LP SSD1306 0.96" (128x64) Driver)](https://github.com/SODAVK/SSD1306_OLED_RISC-V_LP-Core) | [LP SSD1306 0.91" (128x32) Driver](https://github.com/SODAVK/I2C_OLED_RISC-V_LP-Core)*
 ---
 
 ## 📷 Media Demo
